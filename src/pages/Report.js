@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Alert,Text} from 'react-native';
+import {View, StyleSheet, Alert,Text,ScrollView} from 'react-native';
 import api from "../services/api";
 
 const Report = ({navigation}) => {
@@ -27,9 +27,10 @@ const Report = ({navigation}) => {
 
     return (
         <View style={styles.container}>
+            <ScrollView>
             {reportData.length === 0? <Text>Aguardando registros</Text> :(
                 reportData.map((report,index) => (
-                    <View  key={report.id}>
+                    <View style={styles.list} key={report.id}>
                             <Text style={styles.name}>N° da casa/Apto: {report.numeroCasaApto}</Text>
                             <Text style={styles.name}>N° relógio: {report.numeroRelogio}</Text>
                             <Text style={styles.name}>Cód. Cliente: {report.codcliente}</Text>
@@ -38,6 +39,7 @@ const Report = ({navigation}) => {
                     </View>
                 ))
             )}
+            </ScrollView>
         </View>
     )
 }
@@ -50,12 +52,13 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         padding:30
     },
-    head: {
-        height: 40,
-        backgroundColor: '#f1f8ff'
+    name:{
+        fontSize:12,
+        fontWeight:"bold"
     },
-    text: {
-        margin: 6
+    list:{
+        backgroundColor: "#d1d1d1",
+        marginBottom:12
     }
 });
 
