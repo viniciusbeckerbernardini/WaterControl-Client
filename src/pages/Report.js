@@ -26,8 +26,18 @@ const Report = ({navigation}) => {
     loadReports();
 
     return (
-        <View>
-            <Text>{reportData.length === 0? "Não tem" : "Chegou"}</Text>
+        <View style={styles.container}>
+            {reportData.length === 0? <Text>Aguardando registros</Text> :(
+                reportData.map((report,index) => (
+                    <View  key={report.id}>
+                            <Text style={styles.name}>N° da casa/Apto: {report.numeroCasaApto}</Text>
+                            <Text style={styles.name}>N° relógio: {report.numeroRelogio}</Text>
+                            <Text style={styles.name}>Cód. Cliente: {report.codcliente}</Text>
+                            <Text style={styles.name}>N° de leitura: {report.numeroleitura}</Text>
+                            <Text style={styles.name}>Ultimo cadastro: {report.dataUltima}</Text>
+                    </View>
+                ))
+            )}
         </View>
     )
 }
